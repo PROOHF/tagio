@@ -1,4 +1,4 @@
-function nosa() {
+function tagio() {
   var xmlInput = document.getElementById('input').value;
   var xmlTag   = document.getElementById('tag').value;
 
