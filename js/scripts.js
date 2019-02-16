@@ -1,17 +1,20 @@
+const errorColor = "#FF0000";
+const okColor = "#000000";
+
 function tagio() {
   var xmlInput = document.getElementById('input').value;
   var xmlTag   = document.getElementById('tag').value;
 
   if (xmlInput == "" || xmlTag == "") {
     document.getElementById("output").value = "Input textarea or tag field seems empty, please check above.";
-    document.getElementById("output").style.color = "#FF0000";
+    document.getElementById("output").style.color = errorColor;
   } else {
     if (window.DOMParser) {
       parser = new DOMParser();
       xmlDoc = parser.parseFromString(xmlInput, "text/xml");
     } else { // Internet Explorer
       document.getElementById("output").value = "Browser not supported!";
-      document.getElementById("output").style.color = "#FF0000";
+      document.getElementById("output").style.color = errorColor;
     }
 
     var x, i, tagCount;
@@ -25,13 +28,13 @@ function tagio() {
     
     if (tagCount == 0) {
       document.getElementById("output").value = "No XML-tag named <" + xmlTag + "> found!";
-      document.getElementById("output").style.color = "#FF0000";
+      document.getElementById("output").style.color = errorColor;
       document.getElementById("tagCountLabel").innerHTML = tagCount;
     } else {
       // Removes the last , char to prevent an extra linebreak at the bottom
       xmlTags = xmlTags.substring(0, xmlTags.length - 1);
       document.getElementById("output").value = xmlTags.split(',').join("\r\n");
-      document.getElementById("output").style.color = "#000000";
+      document.getElementById("output").style.color = okColor;
       document.getElementById("tagCountLabel").innerHTML = tagCount;
     }
   }
@@ -63,6 +66,6 @@ function clearTextareas() {
     inputTextarea.value = '';
     tagTextarea.value = '';
     outputTextarea.value = '';
-    outputTextarea.style.color = "#000000";
+    outputTextarea.style.color = okColor;
     tagCountLabel.innerHTML = "0"
 }
